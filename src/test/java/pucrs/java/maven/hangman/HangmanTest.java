@@ -32,4 +32,11 @@ public class HangmanTest {
 		assertTrue(h.getMisses().contains("e"));
 	}
 	
+	@Test
+	public void testCharGuessCorrect() {
+		Hangman h = new Hangman("hangman");
+		h.guess("A");
+		assertEquals("-a---a-", h.getWord());
+	}
+	
 }

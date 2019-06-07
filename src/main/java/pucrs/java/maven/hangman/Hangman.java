@@ -3,13 +3,12 @@ package pucrs.java.maven.hangman;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Hangman {
-	
+
 	private String secret;
 	private String word;
 	private List<String> misses;
-	
+
 	public Hangman(String secret) {
 		super();
 		this.secret = secret;
@@ -19,7 +18,7 @@ public class Hangman {
 
 	private void generateInitialWord() {
 		word = "";
-		for(int i = 0; i < this.secret.length(); i++) {
+		for (int i = 0; i < this.secret.length(); i++) {
 			word += "-";
 		}
 	}
@@ -29,17 +28,37 @@ public class Hangman {
 	}
 
 	public void guess(String letter) {
-		//FIXME: comparar letter e secret!
+		// FIXME: comparar letter e secret!
+		String vetorSecret[] = new String[secret.length()];
+		String vetorWord[] = new String[word.length()];
+		List<Integer> posicao = new ArrayList<Integer>();
 		letter = letter.toLowerCase();
-		misses.add(letter);
+		vetorSecret = secret.split("");
+		vetorWord = word.split("");
+
 		
+		for (int i = 0; i < vetorSecret.length; i++) {
+			if (vetorSecret[i].equals(letter)) {
+				posicao.add(i);
+			}
+		}
+
+		if (posicao.isEmpty()) {
+			misses.add(letter);
+		}
+		else {
+			for(int i = 0; i < posicao.size(); i++) {
+				vetorWord[posicao.get(i)] = letter;
+			}
+			word = "";
+			for(int i = 0; i < vetorWord.length; i++) {
+				word += vetorWord[i];
+			}
+		}
 	}
 
 	public List<String> getMisses() {
 		return misses;
 	}
 
-
-	
-	
 }
