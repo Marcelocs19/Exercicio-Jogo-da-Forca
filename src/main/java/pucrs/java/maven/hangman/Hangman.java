@@ -35,11 +35,11 @@ public class Hangman {
 		letter = letter.toLowerCase();
 		vetorSecret = secret.split("");
 		vetorWord = word.split("");
-
 		
 		for (int i = 0; i < vetorSecret.length; i++) {
 			if (vetorSecret[i].equals(letter)) {
 				posicao.add(i);
+				vetorWord[i] = letter;
 			}
 		}
 
@@ -47,9 +47,6 @@ public class Hangman {
 			misses.add(letter);
 		}
 		else {
-			for(int i = 0; i < posicao.size(); i++) {
-				vetorWord[posicao.get(i)] = letter;
-			}
 			word = "";
 			for(int i = 0; i < vetorWord.length; i++) {
 				word += vetorWord[i];
